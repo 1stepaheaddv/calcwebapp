@@ -1,5 +1,8 @@
 pipeline {
     agent any
+    tools {
+        maven "/opt/maven"
+    }
     stages {
         stage('Git Checkout') {
             steps {
@@ -10,8 +13,8 @@ pipeline {
         
         stage('Package') {
             steps {
-                bat 'mvn package'    
-		            echo "Maven Package Goal Executed Successfully!";
+                sh  "mvn package"   
+		echo "Maven Package Goal Executed Successfully!";
             }
         }
         
@@ -33,7 +36,7 @@ pipeline {
             steps {
 		// Change this as per your Jenkins Configuration
                 withSonarQubeEnv('SonarQube') {
-                    bat 'mvn package sonar:sonar'
+                sh 'mvn package sonar:sonar'
                 }
             }
         }
