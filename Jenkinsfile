@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Git Checkout') {
             steps {
-                git url: 'https://github.com/1stepaheaddv/calcwebapp1'    
+                git url: 'https://github.com/1stepaheaddv/calcwebapp'    
 		            echo "Code Checked-out Successfully!!";
             }
         }
