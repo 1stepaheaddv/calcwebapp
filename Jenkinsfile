@@ -1,12 +1,9 @@
 pipeline {
     agent any
-    tools {
-        maven "/opt/maven"
-    }
     stages {
         stage('Git Checkout') {
             steps {
-                git url: 'https://github.com/1stepaheaddv/calcwebapp.git'    
+                git url: 'https://github.com/1stepaheaddv/calcwebapp'    
 		            echo "Code Checked-out Successfully!!";
             }
         }
@@ -32,7 +29,7 @@ pipeline {
 	stage('SonarQube analysis') {
             steps {
                 withSonarQubeEnv('sonarqube-9.9') {
-                sh 'mvn sonar:sonar'
+                sh 'mvn clean package sonar:sonar'
                 }
             }
         }
